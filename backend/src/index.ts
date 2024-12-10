@@ -4,18 +4,27 @@ const wss = new WebSocketServer({port:8080})
 
 
 //event handler
+let userCount=0;
+let allSockets=[]
+
 
 wss.on("connection",function(socket){
 
-    console.log("connected")
+    allSockets.push(socket)
 
-   
+    userCount++;
 
-    socket.on("message",(e)=>{
-        if(e.toString()=='ping'){
-            socket.send("pong")
+    console.log("user Connected "+userCount)
+
+    socket.on("message",(message)=>{
+
+        console.log("message recived"+ message,toString())
+        for(let i=0;i<allSockets.length;i++){
+            const s =allSockets[i];
+            s.send(message.toString()+": sent from server")
         }
-    })
 
+        
+    })
 
 })

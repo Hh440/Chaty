@@ -31,9 +31,9 @@ function App() {
   },[])
  
   return (
-    <div>
+    <div className='bg-blue-600 w-screen h-screen justify-center items-center flex gap-3'>
       <input ref={inputRef} type="text" placeholder='Message..'/>
-      <button onClick={sendMessage}>Send</button>
+      <button className='h-7 bg-red-600 w-14 rounded ' onClick={sendMessage}>Send</button>
       
     </div>
   )
