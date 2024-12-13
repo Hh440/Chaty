@@ -5,7 +5,13 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily:{
+        PTSans: ["PT Sans", "sans-serif"],
+        Jap: ["Noto Sans Japanese", "sans-serif"],
+        Play:["Playwrite Netherland Guides"]
+      }
+    },
   },
   plugins: [],
 }

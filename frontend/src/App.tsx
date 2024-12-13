@@ -2,6 +2,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
 import { ChatRoom } from './pages/ChatRoom'
+import { Home } from './pages/Home'
 
 
 
@@ -77,7 +78,8 @@ function App() {
   return(
     <BrowserRouter>
       <Routes>
-        <Route path='/chatRoom' element={<ChatRoom/>}/>
+        <Route path='/' element={<Home/>}/>
+        <Route path='/chatRoom/:roomId' element={<ChatRoom/>}/>
         
 
       </Routes>

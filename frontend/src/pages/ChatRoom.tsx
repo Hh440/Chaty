@@ -1,7 +1,11 @@
 import { useEffect, useRef, useState } from "react"
+import { useParams } from "react-router-dom"
 
 
 export const ChatRoom =()=>{
+
+    const ChatId= useParams()
+    console.log(ChatId)
      
     const inputRef= useRef<HTMLInputElement>(null)
 
@@ -19,7 +23,7 @@ export const ChatRoom =()=>{
             ws.send(JSON.stringify({
                 type:"join",
                 payload:{
-                    roomId:"red"
+                    roomId:ChatId
                 }
             }))
         }
