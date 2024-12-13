@@ -4,14 +4,17 @@ import { useParams } from "react-router-dom"
 
 export const ChatRoom =()=>{
 
-    const ChatId= useParams()
-    console.log(ChatId)
+    const ChatId=  useParams()
+    
      
     const inputRef= useRef<HTMLInputElement>(null)
 
     const[message,setMessage]=useState<string[]>([])
 
     const wsRef= useRef<WebSocket>()
+    //const userIdRef = useRef<string>(`user-${Math.random().toString(36).substr(2, 9)}`); 
+
+
   
 
     useEffect(()=>{
@@ -23,19 +26,20 @@ export const ChatRoom =()=>{
             ws.send(JSON.stringify({
                 type:"join",
                 payload:{
-                    roomId:ChatId
+                    roomId:ChatId.roomId
                 }
             }))
         }
 
 
         ws.onmessage= (event)=>{
-            const newMessage = event.data;
+            const payload = event.data;
+
             setMessage((prevMessages) => {
                 // if (prevMessages.includes(newMessage)) {
                 //     return prevMessages; 
                 // }
-                return [...prevMessages, newMessage];
+                return [...prevMessages,payload];
             });
         }
 
@@ -49,6 +53,11 @@ export const ChatRoom =()=>{
 
 
     },[])
+
+
+    
+
+    
 
 
     const sendMessage= ()=>{
@@ -67,7 +76,8 @@ export const ChatRoom =()=>{
         wsRef.current?.send(JSON.stringify({
             type:"chat",
             payload:{
-                message:message
+                message:message,
+               // sender:userIdRef.current
             }
         }))
 
@@ -85,8 +95,12 @@ export const ChatRoom =()=>{
 
                 <div className="border-red-400 overflow-y-auto h-[90vh] no-scrollbar">
                     {message.map((m,index)=>(
-                        <div key={index} className="flex w-fit pl-2">
-                            <span className="rounded-sm bg-white mb-2 p-2">
+                        <div key={index}className={`flex justify-start mb-2`}>
+                            <span
+                                className={`rounded-md p-2
+                                     bg-gray-500 text-white
+                                `}
+                            >
                                 {m}
                             </span>
                         </div>

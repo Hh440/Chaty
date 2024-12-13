@@ -8,6 +8,7 @@ const wss = new WebSocketServer({ port: 8080 });
 interface User{
     socket:WebSocket;
     room:string;
+    
 }
 let allSockets:User[]=[]
 
@@ -23,7 +24,9 @@ wss.on("connection", function (socket: WebSocket) {
        if(parsedMessage.type==="join"){
         allSockets.push({
             socket,
-            room:parsedMessage.payload.roomId 
+            room:parsedMessage.payload.roomId,
+
+
         })
        }
 

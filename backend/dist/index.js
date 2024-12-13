@@ -11,7 +11,7 @@ wss.on("connection", function (socket) {
         if (parsedMessage.type === "join") {
             allSockets.push({
                 socket,
-                room: parsedMessage.payload.roomId
+                room: parsedMessage.payload.roomId,
             });
         }
         if (parsedMessage.type === "chat") {
