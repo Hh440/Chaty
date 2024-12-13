@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import { useParams } from "react-router-dom"
+import { BACKEND_URL } from "../Config"
 
 
 export const ChatRoom =()=>{
@@ -18,7 +19,7 @@ export const ChatRoom =()=>{
   
 
     useEffect(()=>{
-        const ws= new WebSocket('ws://localhost:8080')
+        const ws= new WebSocket(BACKEND_URL)
 
         wsRef.current=ws
 

@@ -1,0 +1,1 @@
+export const  BACKEND_URL="https://chaty-810g.onrender.com"
